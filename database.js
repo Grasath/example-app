@@ -2,6 +2,8 @@
 let pool;
 async function main(){
     const mysql = await require('mysql2');
+    const dotenv = await require('dotenv');
+    await dotenv.config();
     pool = await mysql.createPool({
         host : process.env.mysql_host,
         user : process.env.mysql_user,
