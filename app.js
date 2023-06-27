@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const {count} = require('./database.js');
 dotenv.config();
 const app = express();
-const port = process.env.port || 3000;
+const port = process.env.port;
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.set('view engine','ejs');
@@ -25,6 +25,6 @@ app.get('/',async(req,res)=>{
 
 
 
-app.listen(port,()=>{
+app.listen(port || 3000,()=>{
     console.log(`server starting on ${port}`);
 })
