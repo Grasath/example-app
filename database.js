@@ -31,18 +31,13 @@ module.exports.count = async()=>{
             JOIN
         titles t ON t.emp_no = e.emp_no
             AND de.to_date = t.to_date
-            AND t.to_date > SYSDATE();`,
-            function (error, results, fields) {
-                if (error) throw error;
-            }
+            AND t.to_date > SYSDATE();`
     );
 
     const [m_count] = await pool.query(
-        `select count(emp_no) as man_count from dept_manager`,
-        function (error, results, fields) {
-            if (error) throw error;
-        }
+        `select count(emp_no) as man_count from dept_manager`
     );
+    await pool.end()
 
     const result = {
         eCount : e_count[0].emp_count,
