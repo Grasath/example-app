@@ -11,9 +11,17 @@ app.set('views',`${__dirname}/views`);
 
 
 
-app.get('/',async(req,res)=>{
-    const result = await count();
-    res.render('index',{c:result});
+app.get('/',(req,res)=>{
+    const run = async()=>{
+        try{
+            const result = await count();
+            res.render('index',{c:result});
+        }
+        catch (e){
+            console.log(e);
+        }
+    }
+    run();    
 })
 
 
