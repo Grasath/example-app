@@ -1,4 +1,3 @@
-
 let pool;
 async function main(){
     const mysql = await require('mysql2');
