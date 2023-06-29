@@ -1,14 +1,15 @@
 let pool;
 async function main(){
-    const mysql = await require('mysql2');
-    const dotenv = await require('dotenv');
-    await dotenv.config();
-    pool = await mysql.createPool({
-        host : process.env.mysql_host,
-        user : process.env.mysql_user,
-        password : process.env.mysql_password,
-        database : process.env.mysql_database,
-        connectTimeout : 30000
+    const mysql = require('mysql2');
+    const dotenv = require('dotenv');
+    dotenv.config();
+    pool = mysql.createPool({
+        host: process.env.mysql_host,
+        user: process.env.mysql_user,
+        password: process.env.mysql_password,
+        database: process.env.mysql_database,
+        port : process.env.mysql_port,
+        connectTimeout: 30000
     }).promise();
 }
 
@@ -36,7 +37,6 @@ module.exports.count = async()=>{
     const [m_count] = await pool.query(
         `select count(emp_no) as man_count from dept_manager`
     );
-    await pool.end()
 
     const result = {
         eCount : e_count[0].emp_count,
